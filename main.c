@@ -9,7 +9,8 @@ int main(int argc, char *argv[])
     int opt_index;  // not going to be used as every long command
                     // has a corresponding short command
 
-    int aflag = 0;
+    int aflag = 0, bflag = 0, cflag = 0;
+    char *cvalue = NULL;
 
     printf("Hello World!\n");
 
@@ -28,11 +29,21 @@ int main(int argc, char *argv[])
         case 'a':
             aflag = 1;
             break;
+        case 'b':
+            bflag = 1;
+            break;
+        case 'c':
+            cflag = 1;
+            if(optarg != NULL)
+                cvalue = optarg;
+            break;
         default:
             break;
         }
     }
 
+    printf("aflag = %d, bflag = %d, cflag = %d optarg = %s\n",
+           aflag, bflag, cflag, cvalue);
 
     return 0;
 }
